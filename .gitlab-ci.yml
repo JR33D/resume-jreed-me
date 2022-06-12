@@ -32,8 +32,10 @@ build-job:       # This job runs in the build stage, which runs first.
 unit-test-job:   # This job runs in the test stage.
   stage: test-client    # It only starts when the job in the build stage completes successfully.
   script:
+    - cd client
     - echo "Running unit tests..."
     - npx yarn test
+    - cd ..
 
 # docker-build:
 #   # Use the official docker image.
