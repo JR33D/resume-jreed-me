@@ -1,23 +1,36 @@
 image: node:latest
 
 stages:          # List of stages for jobs, and their order of execution
-  - build
-  - test
+  # - build-server
+  - build-client
+  - test-client
   # - deploy
 
 cache:
   paths:
   - node_modules/
 
+# build-job:       # This job runs in the build stage, which runs first.
+#   stage: build-server
+#   script:
+#     - cd server
+#     - echo "Compiling the code..."
+#     - npx yarn build
+#     - echo "Compile complete."
+#     - cd ..
+
 build-job:       # This job runs in the build stage, which runs first.
-  stage: build
+  stage: build-client
   script:
+    - cd client
+    - yarn install
     - echo "Compiling the code..."
     - npx yarn build
     - echo "Compile complete."
+    - cd ..
 
 unit-test-job:   # This job runs in the test stage.
-  stage: test    # It only starts when the job in the build stage completes successfully.
+  stage: test-client    # It only starts when the job in the build stage completes successfully.
   script:
     - echo "Running unit tests..."
     - npx yarn test
