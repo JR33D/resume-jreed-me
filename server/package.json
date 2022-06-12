@@ -1,0 +1,21 @@
+{
+  "name": "resume-jreed-me",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JR33D/resume-jreed-me.git"
+  },
+  "keywords": [],
+  "author": "Jeremy Reed <jreed129@gmail.com>",
+  "license": "ISC"
+}

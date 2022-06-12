@@ -1,0 +1,46 @@
+[
+    {
+      "id": 1,
+      "title": "Software Engineer",
+      "company": "Pearson",
+      "description":
+        "Championed migration and improvements of system from TFS to ADO, engineer workflow, and update application release cycles.",
+      "startDate": "02/2020"
+    },
+    {
+      "id": 2,
+      "title": "Senior Front-End Engineer",
+      "company": "FEi Systems",
+      "description":
+        "Architected front-end framework for new system for medicare and medicaid systems across states.",
+      "startDate": "01/2018",
+      "endDate": "02/2020"
+    },
+    {
+      "id": 3,
+      "title": "Front-End Engineer",
+      "company": "Residential Design Systems",
+      "description":
+        "Improved internal systems and processes for faster communication and development efforts",
+      "startDate": "07/2017",
+      "endDate": "11/2017"
+    },
+    {
+      "id": 4,
+      "title": "Software Engineer II",
+      "company": "Pearson (Connections Education)",
+      "description":
+        "Maintained existing online schooling platform for hundreds of thousands of students.",
+      "startDate": "01/2014",
+      "endDate": "07/2017"
+    },
+    {
+      "id": 5,
+      "title": "Developer II",
+      "company": "Catalyte (Catalyst IT Services)",
+      "description":
+        "Consulted for various projects from fortune 500 companies to Mom and Pop business just getting off the ground.",
+      "startDate": "08/2011",
+      "endDate": "01/2014"
+    }
+  ]
