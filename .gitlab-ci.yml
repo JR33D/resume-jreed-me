@@ -1,46 +1,89 @@
 image: node:latest
 
-stages:          # List of stages for jobs, and their order of execution
-  # - build-server
-  - build-client
-  - test-client
-  # - deploy
+stages: # List of stages for jobs, and their order of execution
+  - install
+  - build
+  - quality
+  #- docker
 
-cache:
-  paths:
-  - node_modules/
-
-# build-job:       # This job runs in the build stage, which runs first.
-#   stage: build-server
-#   script:
-#     - cd server
-#     - echo "Compiling the code..."
-#     - npx yarn build
-#     - echo "Compile complete."
-#     - cd ..
-
-build-job:       # This job runs in the build stage, which runs first.
-  stage: build-client
+install-client:
+  stage: install
   script:
-    - cd client
-    - yarn install
+    - cd $CI_PROJECT_DIR/client
+    - npx yarn install
+  artifacts:
+    name: "client-artifacts"
+    untracked: true
+    expire_in: 30 mins
+    paths:
+      - $CI_PROJECT_DIR/client/.npm/
+      - $CI_PROJECT_DIR/client/node_modules/
+
+install-server:
+  stage: install
+  script:
+    - cd $CI_PROJECT_DIR/server
+    - npx yarn install
+  artifacts:
+    name: "server-artifacts"
+    untracked: true
+    expire_in: 30 mins
+    paths:
+      - $CI_PROJECT_DIR/server/.npm/
+      - $CI_PROJECT_DIR/server/node_modules/
+
+build-client: 
+  stage: build
+  script:
+    - cd $CI_PROJECT_DIR/client
     - echo "Compiling the code..."
     - npx yarn build
     - echo "Compile complete."
-    - cd ..
+  artifacts:
+      paths:
+         - build
+      expire_in: 30 mins
+   dependencies:
+      - install-client
 
-unit-test-job:   # This job runs in the test stage.
-  stage: test-client    # It only starts when the job in the build stage completes successfully.
+build-server: 
+  stage: build
   script:
-    - cd client
-    - echo "Running unit tests..."
+    - cd $CI_PROJECT_DIR/server
+    - echo "Server code does not need compiling at this time."
+  dependencies:
+    - install-server
+
+test-client:
+  stage: quality 
+  script:
+    - cd $CI_PROJECT_DIR/client
+    - echo "Running client unit tests..."
     - npx yarn test
-    - cd ..
+  artifacts:
+      paths:
+         - build
+      expire_in: 30 mins
+   dependencies:
+      - install-server
+
+test-server:
+  stage: quality 
+  script:
+    - cd $CI_PROJECT_DIR/server
+    - echo "Running server unit tests..."
+    - npx yarn test
+  artifacts:
+      paths:
+         - build
+      expire_in: 30 mins
+   dependencies:
+      - build-server
 
 # docker-build:
 #   # Use the official docker image.
 #   image: docker:latest
-#   stage: deploy # This job runs in the deploy stage.
+#   stage: docker # This job runs in the deploy stage.
 #   services:
 #     - docker:dind
 #   before_script:
