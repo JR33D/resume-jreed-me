@@ -39,10 +39,6 @@ build-client:
     - echo "Compiling the code..."
     - npx yarn build
     - echo "Compile complete."
-  artifacts:
-      paths:
-         - build
-      expire_in: 30 mins
   dependencies:
       - install-client
 
@@ -60,10 +56,6 @@ test-client:
     - cd $CI_PROJECT_DIR/client
     - echo "Running client unit tests..."
     - npx yarn test
-  artifacts:
-      paths:
-         - build
-      expire_in: 30 mins
   dependencies:
       - install-client
 
@@ -73,10 +65,6 @@ test-server:
     - cd $CI_PROJECT_DIR/server
     - echo "Running server unit tests..."
     - npx yarn test
-  artifacts:
-      paths:
-         - build
-      expire_in: 30 mins
   dependencies:
       - install-server
 
