@@ -65,7 +65,7 @@ test-client:
          - build
       expire_in: 30 mins
   dependencies:
-      - install-server
+      - install-client
 
 test-server:
   stage: quality 
@@ -78,7 +78,7 @@ test-server:
          - build
       expire_in: 30 mins
   dependencies:
-      - build-server
+      - install-server
 
 # docker-build:
 #   # Use the official docker image.
