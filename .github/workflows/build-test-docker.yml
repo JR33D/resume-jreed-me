@@ -1,0 +1,18 @@
+name: Build & Release App
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-client:
+    uses: jr33d/automation/workflows/client.yml@1
+  build-server:
+    uses: jr33d/automation/workflows/server.yml@1
+
+  dockerize:
+    needs: [build-client, build-server]
+    uses: jr33d/automation/workflows/docker.yml@1
+    # with:
+    #   artifact-url: jobs.build.outputs.artifact-url

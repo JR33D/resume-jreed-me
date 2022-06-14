@@ -6,7 +6,7 @@ services:
           - client
         restart: always
         build:
-          dockerfile: Dockerfile
+          dockerfile: dockerfile
           context: ./nginx
         ports:
           - "3050:80"
@@ -15,7 +15,7 @@ services:
         container_name: resume-jreed-me_client
         build:
             context: ./client
-            dockerfile: Dockerfile
+            dockerfile: dockerfile
         #ports:
         #    - "3000:3000"
         volumes:
@@ -25,7 +25,7 @@ services:
         container_name: resume-jreed-me-api
         build:
             context: ./server
-            dockerfile: Dockerfile
+            dockerfile: dockerfile
         #ports:
         #    - "3001:3001"
         volumes:
