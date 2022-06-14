@@ -24,8 +24,8 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - run: cd client
     - uses: actions/checkout@v3
+    - run: cd client
     - name: Building React Client ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
