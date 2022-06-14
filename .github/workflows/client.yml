@@ -5,9 +5,7 @@ name: Client Build and Test
 
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows: ["Build & Release App"]
-    types: [requested]
+  workflow_call:
   pull_request:
     branches: [ "main" ]
     paths:
