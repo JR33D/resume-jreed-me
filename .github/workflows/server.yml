@@ -8,17 +8,17 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - 'client/**'
+      - 'server/**'
   pull_request:
     branches: [ "main" ]
     paths:
-      - 'client/**'
+      - 'server/**'
 
 jobs:
   build:
     defaults:
       run:
-        working-directory: client
+        working-directory: server
     steps:
     - uses: actions/checkout@v3
     - name: Building React Client
@@ -26,7 +26,7 @@ jobs:
       with:
         node-version: 'latest'
         cache: 'yarn'
-        cache-dependency-path: 'client/yarn.lock'
+        cache-dependency-path: 'server/yarn.lock'
     - run: yarn install
-    - run: yarn run build
+    - run: yarn run build --if-present
     - run: yarn test
