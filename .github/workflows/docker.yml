@@ -17,6 +17,6 @@ jobs:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-    - name: publish to ghcr.io/JR33D/resume-jreed-me
-      run: docker push ghcr.io/JR33D/resume-jreed-me:latest
+    - name: publish to ghcr.io/jr33d/resume-jreed-me
+      run: docker push ghcr.io/jr33d/resume-jreed-me:latest
   

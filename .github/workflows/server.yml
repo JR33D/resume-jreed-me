@@ -26,5 +26,5 @@ jobs:
         cache: 'yarn'
         cache-dependency-path: 'server/yarn.lock'
     - run: yarn install
-    - run: yarn run build --if-present
+    - run: yarn build
     - run: yarn test
