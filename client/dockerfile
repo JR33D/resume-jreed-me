@@ -17,7 +17,6 @@ COPY . ./
 
 RUN yarn build
 
-
 EXPOSE 3001
 
 # start client
