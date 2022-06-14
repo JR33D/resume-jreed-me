@@ -12,7 +12,7 @@ COPY yarn.lock ./
 RUN yarn install
 
 # add app
-COPY /server ./server
+COPY . ./server
 
 RUN yarn build
 
