@@ -1,16 +1,16 @@
 [
-    {
-      "id": 1,
-      "image": "/portfolio/ngx-chronology.png",
-      "title": "ngx-chronology",
-      "link": "https://jr33d.github.io/ngx-chronology/",
-      "description": "A timeline display component for angular."
-    },
-    {
-      "id": 2,
-      "image": "/portfolio/ngx-codetabs.png",
-      "title": "ngx-codetabs",
-      "link": "https://jr33d.github.io/ngx-codetab/",
-      "description": "A tabbed code display component for angular."
-    }
-  ]
+  {
+    "id": 1,
+    "image": "/portfolio/ngx-chronology.png",
+    "title": "ngx-chronology",
+    "link": "https://jr33d.github.io/ngx-chronology/",
+    "description": "A timeline display component for angular."
+  },
+  {
+    "id": 2,
+    "image": "/portfolio/ngx-codetabs.png",
+    "title": "ngx-codetabs",
+    "link": "https://jr33d.github.io/ngx-codetab/",
+    "description": "A tabbed code display component for angular."
+  }
+]
