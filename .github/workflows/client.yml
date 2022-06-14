@@ -18,6 +18,9 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: client
     strategy:
       matrix:
         node-version: [16.x]
@@ -25,7 +28,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-      working-directory: ./client
     - name: Building React Client ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
