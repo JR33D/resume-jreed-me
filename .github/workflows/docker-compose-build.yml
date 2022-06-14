@@ -1,0 +1,20 @@
+name: Docker Compose Build
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ['Client Build and Test', 'Server Build and Test']
+    branches: [main]
+    types: 
+      - completed
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker images
+      run: docker-compose build
