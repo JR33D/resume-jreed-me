@@ -7,12 +7,12 @@ on:
 
 jobs:
   build-client:
-    uses: ./.github/actions/client.yml@1
+    uses: .github/actions/client.yml@1
   build-server:
-    uses: ./.github/actions/server.yml
+    uses: .github/actions/server.yml
 
   dockerize:
     needs: [build-client, build-server]
-    uses: ./.github/actions/docker.yml
+    uses: .github/actions/docker.yml
     # with:
     #   artifact-url: jobs.build.outputs.artifact-url
