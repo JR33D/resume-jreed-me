@@ -28,13 +28,13 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: borales/actions-yarn@v3.0.0
-        with:
-          cmd: install # will run `yarn install` command
-      - uses: borales/actions-yarn@v3.0.0
-        with:
-          cmd: build # will run `yarn build` command
-      - uses: borales/actions-yarn@v3.0.0
-        with:
-          cmd: test # will run `yarn test` command
+    - uses: actions/checkout@v3
+    - name: Building React Client ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'yarn'
+        cache-dependency-path: 'client/yarn.lock'
+    - run: yarn install
+    - run: yarn run build --if-present
+    - run: yarn test
