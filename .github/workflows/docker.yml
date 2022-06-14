@@ -22,6 +22,12 @@ jobs:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
+    - name: tag ghcr.io/jr33d/resume-jreed-me_client
+      run: docker tag resume-jreed-me_nginx:latest ghcr.io/jr33d/resume-jreed-me_client:latest
+    - name: tag ghcr.io/jr33d/resume-jreed-me_api
+      run: docker tag resume-jreed-me_nginx:latest ghcr.io/jr33d/resume-jreed-me_api:latest
+    - name: tag to ghcr.io/jr33d/resume-jreed-me_nginx
+      run: docker tag resume-jreed-me_nginx:latest ghcr.io/jr33d/resume-jreed-me_nginx:latest
     - name: publish to ghcr.io/jr33d/resume-jreed-me_client
       run: docker push ghcr.io/jr33d/resume-jreed-me_client:latest
     - name: publish to ghcr.io/jr33d/resume-jreed-me_api
