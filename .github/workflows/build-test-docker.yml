@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-client:
-    uses: ./.github/workflows/client.yml@1
+    uses: ./.github/workflows/client.yml
   build-server:
     uses: ./.github/workflows/server.yml
 
