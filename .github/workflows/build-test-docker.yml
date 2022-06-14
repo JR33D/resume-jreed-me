@@ -7,12 +7,12 @@ on:
 
 jobs:
   build-client:
-    uses: jr33d/automation/workflows/client.yml@1
+    uses: ./.github/actions/client.yml@1
   build-server:
-    uses: jr33d/automation/workflows/server.yml@1
+    uses: ./.github/actions/server.yml
 
   dockerize:
     needs: [build-client, build-server]
-    uses: jr33d/automation/workflows/docker.yml@1
+    uses: ./.github/actions/docker.yml
     # with:
     #   artifact-url: jobs.build.outputs.artifact-url
