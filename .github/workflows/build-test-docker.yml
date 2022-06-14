@@ -6,9 +6,9 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build-client:
+  client:
     uses: ./.github/workflows/client.yml
-  build-server:
+  server:
     uses: ./.github/workflows/server.yml
 
   dockerize:
