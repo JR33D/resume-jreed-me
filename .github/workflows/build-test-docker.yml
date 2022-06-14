@@ -14,5 +14,3 @@ jobs:
   dockerize:
     needs: [client, server]
     uses: ./.github/workflows/docker.yml
-    with:
-      artifact-url: jobs.build.outputs.artifact-url
