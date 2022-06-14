@@ -2,8 +2,9 @@ name: Docker Compose Build
 
 on:
   workflow_dispatch:
-  push:
-    branches: [ "main" ]
+  workflow_run:
+    workflows: ["Build & Release App"]
+    types: [requested]
 
 jobs:
   build:
