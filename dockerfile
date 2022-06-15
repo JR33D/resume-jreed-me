@@ -15,10 +15,12 @@ WORKDIR /app/server
 RUN yarn install
 RUN yarn build
 
-FROM nginx
-COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+WORKDIR /app
+# FROM nginx
+# COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 
-EXPOSE 80
+
+# EXPOSE 80
 EXPOSE 3000
 EXPOSE 3001
 
