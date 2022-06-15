@@ -3,7 +3,7 @@ services:
     nginx:
       platform: linux/arm/v7
       container_name: resume-jreed-me_nginx
-      image: ghcr.io/jr33d/resume-jreed-me_ngix
+      #image: ghcr.io/jr33d/resume-jreed-me_ngix
       depends_on:
         - api
         - client
@@ -17,7 +17,7 @@ services:
     client:
       platform: linux/arm/v7
       container_name: resume-jreed-me_client
-      image: ghcr.io/jr33d/resume-jreed-me_client
+      #image: ghcr.io/jr33d/resume-jreed-me_client
       build:
           context: ./client
           dockerfile: dockerfile
@@ -29,7 +29,7 @@ services:
     api:
       platform: linux/arm/v7
       container_name: resume-jreed-me_api
-      image: ghcr.io/jr33d/resume-jreed-me_api
+      #image: ghcr.io/jr33d/resume-jreed-me_api
       build:
           context: ./server
           dockerfile: dockerfile
