@@ -4,6 +4,7 @@ FROM node:lts-alpine
 # set the working direction
 WORKDIR /app
 
+COPY start.sh ./app/start.sh
 COPY . ./
 
 # install and build
@@ -25,4 +26,4 @@ EXPOSE 3000
 EXPOSE 3001
 
 ENTRYPOINT ["/bin/sh"]
-CMD ["/app/start_instances.sh"]
+CMD ["/app/start.sh"]
