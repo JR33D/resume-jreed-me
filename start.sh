@@ -1,5 +1,5 @@
 #!/bin/bash
+yarn global add concurrently
 yarn global add serve
-serve -s client/build
-node server/index.js
+concurrently "serve -s client/build" "node server/index.js"
 # nginx -g daemonoff
