@@ -9,8 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Build the Docker images
-      run: docker-compose build
+    # - name: Set up QEMU
+    #   uses: docker/setup-qemu-action@v1
+    # - name: Set up Docker Buildx
+    #   uses: docker/setup-buildx-action@v1
+    # - name: Build the Docker images
+    #   run: docker-compose build
   # Need to figure out how to upload built containers and download in next job
   # publish:
   #   needs: [build]
@@ -22,16 +26,28 @@ jobs:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-    - name: tag ghcr.io/jr33d/resume-jreed-me_client
-      run: docker tag resume-jreed-me_nginx:latest ghcr.io/jr33d/resume-jreed-me_client:latest
-    - name: tag ghcr.io/jr33d/resume-jreed-me_api
-      run: docker tag resume-jreed-me_nginx:latest ghcr.io/jr33d/resume-jreed-me_api:latest
-    - name: tag to ghcr.io/jr33d/resume-jreed-me_nginx
-      run: docker tag resume-jreed-me_nginx:latest ghcr.io/jr33d/resume-jreed-me_nginx:latest
-    - name: publish to ghcr.io/jr33d/resume-jreed-me_client
-      run: docker push ghcr.io/jr33d/resume-jreed-me_client:latest
-    - name: publish to ghcr.io/jr33d/resume-jreed-me_api
-      run: docker push ghcr.io/jr33d/resume-jreed-me_api:latest
-    - name: publish to ghcr.io/jr33d/resume-jreed-me_nginx
-      run: docker push ghcr.io/jr33d/resume-jreed-me_nginx:latest
+
+    - name: Build and push
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        file: ./dockerfile
+        platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
+        push: true
+        tags: | 
+            ghcr.io/jr33d/resume-jreed-me:latest
+
+
+    # - name: tag ghcr.io/jr33d/resume-jreed-me_client
+    #   run: docker tag resume-jreed-me_nginx:latest ghcr.io/jr33d/resume-jreed-me_client:latest
+    # - name: tag ghcr.io/jr33d/resume-jreed-me_api
+    #   run: docker tag resume-jreed-me_nginx:latest ghcr.io/jr33d/resume-jreed-me_api:latest
+    # - name: tag to ghcr.io/jr33d/resume-jreed-me_nginx
+    #   run: docker tag resume-jreed-me_nginx:latest ghcr.io/jr33d/resume-jreed-me_nginx:latest
+    # - name: publish to ghcr.io/jr33d/resume-jreed-me_client
+    #   run: docker push ghcr.io/jr33d/resume-jreed-me_client:latest
+    # - name: publish to ghcr.io/jr33d/resume-jreed-me_api
+    #   run: docker push ghcr.io/jr33d/resume-jreed-me_api:latest
+    # - name: publish to ghcr.io/jr33d/resume-jreed-me_nginx
+    #   run: docker push ghcr.io/jr33d/resume-jreed-me_nginx:latest
   

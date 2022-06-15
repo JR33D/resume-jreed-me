@@ -3,3 +3,8 @@
 README.md
 .gitignore
 .gitlab-ci.yml
+.github/
+
+**/.git
+**/.DS_Store
+**/node_modules
