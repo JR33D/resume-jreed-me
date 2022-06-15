@@ -1,6 +1,5 @@
 # pull the base image
-# FROM node:lts-alpine
-FROM nginx
+FROM node:lts-alpine
 
 # set the working direction
 WORKDIR /app
@@ -16,6 +15,7 @@ WORKDIR /app/server
 RUN yarn install
 RUN yarn build
 
+FROM nginx
 COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
