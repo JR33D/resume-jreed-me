@@ -17,7 +17,7 @@ COPY . ./
 
 RUN yarn build
 
-EXPOSE 3001
+EXPOSE 3000
 
 # start client
 CMD ["serve", "-s", "build"]

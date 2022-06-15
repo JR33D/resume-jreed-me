@@ -1,32 +1,39 @@
 version: "3"
 services:
     nginx:
-        depends_on:
-          - api
-          - client
-        restart: always
-        build:
-          dockerfile: dockerfile
-          context: ./nginx
-        ports:
-          - "3050:80"
+      platform: linux/arm/v7
+      container_name: resume-jreed-me_nginx
+      image: ghcr.io/jr33d/resume-jreed-me_ngix
+      depends_on:
+        - api
+        - client
+      restart: always
+      build:
+        dockerfile: dockerfile
+        context: ./nginx
+      ports:
+        - "3050:80"
 
     client:
-        container_name: resume-jreed-me_client
-        build:
-            context: ./client
-            dockerfile: dockerfile
-        #ports:
-        #    - "3000:3000"
-        volumes:
-            - ./client:/app
+      platform: linux/arm/v7
+      container_name: resume-jreed-me_client
+      image: ghcr.io/jr33d/resume-jreed-me_client
+      build:
+          context: ./client
+          dockerfile: dockerfile
+      #ports:
+      #    - "3000:3000"
+      volumes:
+          - ./client:/app
 
     api:
-        container_name: resume-jreed-me-api
-        build:
-            context: ./server
-            dockerfile: dockerfile
-        #ports:
-        #    - "3001:3001"
-        volumes:
-            - ./server:/app
+      platform: linux/arm/v7
+      container_name: resume-jreed-me_api
+      image: ghcr.io/jr33d/resume-jreed-me_api
+      build:
+          context: ./server
+          dockerfile: dockerfile
+      #ports:
+      #    - "3001:3001"
+      volumes:
+          - ./server:/app
