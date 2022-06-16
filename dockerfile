@@ -23,6 +23,9 @@ COPY /server ./
 RUN yarn build
 
 FROM nginx
+RUN apt-get update 
+RUN apt-get install -y nodejs yarn
+
 COPY start.sh ./app/start.sh
 COPY /nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /app/client/build ./app/client/build
