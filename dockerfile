@@ -24,7 +24,7 @@ RUN yarn build
 
 FROM nginx
 RUN apt update 
-RUN apt install -y nodejs
+RUN apt install -y nodejs npm
 RUN npm install -g yarn
 
 COPY start.sh ./app/start.sh
