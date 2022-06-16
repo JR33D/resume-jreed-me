@@ -1,8 +1,8 @@
 # pull the base image
 FROM node:lts-alpine as builder
 
-RUN apt-get update -qq
-RUN apt-get install -y nginx
+RUN apt update -qq
+RUN apt install -y nginx
 
 RUN yarn global add concurrently serve
 
