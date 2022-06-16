@@ -4,8 +4,6 @@ FROM node:lts-alpine as builder
 # set the working direction
 WORKDIR /app
 
-COPY start.sh ./app/start.sh
-
 COPY /client/package.json ./client/package.json
 COPY /client/yarn.lock ./client/yarn.lock
 
@@ -25,10 +23,10 @@ COPY /server ./
 RUN yarn build
 
 FROM nginx
+COPY start.sh ./app/start.sh
 COPY /nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /app/client/build ./app/client/build
 COPY --from=builder /app/server ./app/server
-COPY --from=builder /app/start.sh ./app/start.sh
 
 RUN yarn global add concurrently serve
 
