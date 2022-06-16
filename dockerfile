@@ -1,8 +1,16 @@
 # pull the base image
 FROM node:lts-alpine as builder
 
+RUN apt-get update -qq
+RUN apt-get install -y nginx
+
+RUN yarn global add concurrently serve
+
 # set the working direction
 WORKDIR /app
+
+COPY start.sh ./app/start.sh
+COPY /nginx/default.conf /etc/nginx/conf.d/default.conf
 
 COPY /client/package.json ./client/package.json
 COPY /client/yarn.lock ./client/yarn.lock
@@ -22,19 +30,17 @@ RUN yarn install
 COPY /server ./
 RUN yarn build
 
-FROM nginx
-RUN apt-get update -qq
-RUN apt-get install -y curl
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-RUN apt install -y nodejs npm yarn
+# FROM nginx
+# RUN apt-get update -qq
+# RUN apt-get install -y curl
+# RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+# RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+# RUN apt install -y nodejs npm yarn
 
-RUN yarn global add concurrently serve
-
-COPY start.sh ./app/start.sh
-COPY /nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY --from=builder /app/client/build ./app/client/build
-COPY --from=builder /app/server ./app/server
+# COPY start.sh ./app/start.sh
+# COPY /nginx/default.conf /etc/nginx/conf.d/default.conf
+# COPY --from=builder /app/client/build ./app/client/build
+# COPY --from=builder /app/server ./app/server
 
 EXPOSE 80
 EXPOSE 3000
