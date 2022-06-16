@@ -23,9 +23,11 @@ COPY /server ./
 RUN yarn build
 
 FROM nginx
+RUN apt-get update -qq
+RUN apt-get install -y curl
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-RUN apt update -qq && apt install -y nodejs npm yarn
+RUN apt install -y nodejs npm yarn
 
 RUN yarn global add concurrently serve
 
