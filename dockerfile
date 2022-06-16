@@ -23,16 +23,12 @@ COPY /server ./
 RUN yarn build
 
 FROM nginx
-RUN apt update 
-RUN apt install -y nodejs npm
-RUN npm install -g yarn
+RUN apt update
 
 COPY start.sh ./app/start.sh
 COPY /nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /app/client/build ./app/client/build
 COPY --from=builder /app/server ./app/server
-
-RUN yarn add concurrently serve
 
 EXPOSE 80
 EXPOSE 3000
