@@ -1,7 +1,8 @@
 # pull the base image
 FROM node:lts-alpine as builder
 
-RUN apt install -y nginx
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apk update && apk -i add nginx && rm -rf /var/lib/apk/lists/*
 
 RUN yarn global add concurrently serve
 
