@@ -31,7 +31,7 @@ COPY /nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /app/client/build ./app/client/build
 COPY --from=builder /app/server ./app/server
 
-RUN yarn global add concurrently serve
+RUN yarn add concurrently serve
 
 EXPOSE 80
 EXPOSE 3000
