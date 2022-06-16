@@ -16,14 +16,14 @@ WORKDIR /app/server
 RUN yarn install
 RUN yarn build
 
-WORKDIR /app
-# FROM nginx
-# COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
-
-
-# EXPOSE 80
 EXPOSE 3000
 EXPOSE 3001
+
+WORKDIR /app
+FROM nginx
+COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 80
 
 ENTRYPOINT ["/bin/sh"]
 CMD ["/app/start.sh"]
