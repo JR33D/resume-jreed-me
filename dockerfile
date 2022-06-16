@@ -23,7 +23,11 @@ COPY /server ./
 RUN yarn build
 
 FROM nginx
-RUN apt update
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt update -qq && apt install -y nodejs npm yarn
+
+RUN yarn global add concurrently serve
 
 COPY start.sh ./app/start.sh
 COPY /nginx/default.conf /etc/nginx/conf.d/default.conf
@@ -34,5 +38,7 @@ EXPOSE 80
 EXPOSE 3000
 EXPOSE 3001
 
-ENTRYPOINT ["/bin/sh"]
-CMD ["/app/start.sh"]
+
+CMD ["concurrently", "\"serve -s client/build\"", "\"node server/index.js\"", "\"nginx -g daemonoff\""]
+# ENTRYPOINT ["/bin/sh"]
+# CMD ["/app/start.sh"]
