@@ -35,7 +35,8 @@ RUN apk add --no-cache --repository http://nl.alpinelinux.org/alpine/edge/main l
     && echo "NPM Version:" "$(npm -v)" \
     && echo "Yarn Version:" "$(yarn -v)"
 
-RUN yarn global add concurrently serve --network-timeout 10000
+RUN yarn config set network-timeout 300000
+RUN yarn global add concurrently serve
 
 COPY start.sh ./app/start.sh
 COPY /nginx/default.conf /etc/nginx/conf.d/default.conf
