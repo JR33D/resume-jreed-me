@@ -1,10 +1,11 @@
 # pull the base image
-FROM node:lts-alpine as builder
+FROM node:lts-alpine
 LABEL maintainer="Jeremy Reed <jreed129@gmail.com>"
-
 
 # set the working direction
 WORKDIR /app
+
+COPY start.sh ./start.sh
 
 COPY /client/package.json ./client/package.json
 COPY /client/yarn.lock ./client/yarn.lock
@@ -24,32 +25,13 @@ RUN yarn install
 COPY /server ./
 RUN yarn build
 
-FROM nginx:alpine
-LABEL maintainer="Jeremy Reed <jreed129@gmail.com>"
-
-# Install node, npm, and yarn
-RUN apk add --no-cache --repository http://nl.alpinelinux.org/alpine/edge/main libuv \
-    && apk add --no-cache --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/main nodejs \
-    && apk add --no-cache --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/community npm yarn \
-    && echo "NodeJS Version:" "$(node -v)" \
-    && echo "NPM Version:" "$(npm -v)" \
-    && echo "Yarn Version:" "$(yarn -v)"
+WORKDIR /app
 
 RUN yarn config set network-timeout 300000
 RUN yarn global add concurrently serve
 
-COPY start.sh ./app/start.sh
-COPY /nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY --from=builder /app/client/build ./app/client/build
-COPY --from=builder /app/server ./app/server
-
-
-EXPOSE 80
 EXPOSE 3000
 EXPOSE 3001
 
-
-# CMD ["concurrently", "\"serve -s /app/client/build\"", "\"node /app/server/index.js\""]
-# CMD ["nginx"]
 ENTRYPOINT ["/bin/sh"]
 CMD ["/app/start.sh"]

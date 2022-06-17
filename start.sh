@@ -1,2 +1,2 @@
 #!/bin/bash
-concurrently "serve -s client/build" "node server/index.js" "nginx"
+concurrently "serve -s /app/client/build" "node /app/server/index.js"
