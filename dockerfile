@@ -55,6 +55,7 @@ EXPOSE 3000
 EXPOSE 3001
 
 
-CMD ["concurrently", "\"serve -s client/build\"", "\"node server/index.js\"", "\"nginx -g daemonoff\""]
+CMD ["concurrently", "\"serve -s /app/client/build\"", "\"node /app/server/index.js\""]
+CMD ["nginx"]
 # ENTRYPOINT ["/bin/sh"]
 # CMD ["/app/start.sh"]
