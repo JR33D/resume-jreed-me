@@ -5,4 +5,8 @@ services:
     ports:
       - 3000:3000
       - 3001:3001
+    environment:
+      SENDGRID_API_KEY:
+      CONTACT_EMAIL:
+      APP_EMAIL:
     restart: unless-stopped

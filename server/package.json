@@ -4,12 +4,16 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
+    "body-parser": "^1.20.0",
     "cors": "^2.8.5",
-    "dotenv": "^16.0.1",
     "express": "^4.18.1"
   },
+  "devDependencies": {
+    "dotenv": "^16.0.1"
+  },
   "scripts": {
-    "start": "node index.js",
+    "start": "node -r dotenv/config index.js dotenv_config_path=../.env",
     "build": "echo \"Error: nothing to build yet\" && exit 0",
     "test": "echo \"Error: no test specified\" && exit 0"
   },
