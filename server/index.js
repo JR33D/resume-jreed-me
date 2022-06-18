@@ -5,6 +5,8 @@ const experienceRoutes = require('./routes/experience-routes.js');
 const projectRoutes = require('./routes/project-routes.js');
 const skillRoutes = require('./routes/skill-routes.js');
 
+require('dotenv').config({ path: '../.env' })
+
 const PORT = process.env.SERVER_APP_PORT || 3001;
 
 const app = express();
