@@ -1,6 +1,3 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-
 name: Client Build and Test
 
 on:
@@ -27,4 +24,18 @@ jobs:
         cache-dependency-path: 'client/yarn.lock'
     - run: yarn install
     - run: yarn build
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: client
+    steps:
+    - uses: actions/checkout@v3
+    - name: Building React Client
+      uses: actions/setup-node@v3
+      with:
+        node-version: 'latest'
+        cache: 'yarn'
+        cache-dependency-path: 'client/yarn.lock'
+    - run: yarn install
     - run: yarn test
