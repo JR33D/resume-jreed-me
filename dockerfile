@@ -15,13 +15,13 @@ COPY /server/yarn.lock ./server/yarn.lock
 
 # install and build client
 WORKDIR /app/client
-RUN yarn install --production
+RUN yarn install
 COPY /client ./
 RUN yarn build
 
 # install and build server
 WORKDIR /app/server
-RUN yarn install --production
+RUN yarn install
 COPY /server ./
 RUN yarn build
 

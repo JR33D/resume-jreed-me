@@ -32,7 +32,7 @@ jobs:
         working-directory: client
     steps:
     - uses: actions/checkout@v3
-    - name: Building React Client
+    - name: Testing React Client
       uses: actions/setup-node@v3
       with:
         node-version: 'latest'
