@@ -5,7 +5,7 @@ import { mockReq, mockRes } from 'sinon-express-mock'
 import sinonChai from "sinon-chai";
 chai.use(sinonChai);
 
-import ExperienceService from "../../../services/experiences.service";
+import ExperienceService from "../../../services/experience.service";
 import ExperienceController from "../../../controllers/experience.controller";
 
 

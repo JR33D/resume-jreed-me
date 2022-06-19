@@ -6,7 +6,7 @@ import sinonChai from "sinon-chai";
 chai.use(sinonChai);
 
 import SkillController from "../../../controllers/skill.controller";
-import SkillService from "../../../services/skills.service";
+import SkillService from "../../../services/skill.service";
 
 describe('Skill Controller', () => {
     const skills = [{ id: 1, title: "Skill One", percentage: "100%" }, { id: 2, title: "Skill Two", percentage: "0%" }];

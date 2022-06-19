@@ -1,14 +1,17 @@
 import express, { Router, Request, Response } from "express";
 import { autoInjectable, inject } from "tsyringe";
 import IController from "./interfaces/controller.interface";
-import IExperienceService from "../services/interfaces/experiences.service.interface";
+import IExperienceService from "../services/interfaces/experience.service.interface";
+import ExperienceService from "../services/experience.service";
 
 @autoInjectable()
 export default class ExperienceController implements IController {
     public path: string = '/experiences';
     public router: Router = express.Router();
+    private experienceService?: ExperienceService;
 
-    constructor(@inject("IExperienceService")private experienceService?: IExperienceService) {
+    constructor(@inject("IExperienceService")experienceService?: IExperienceService) {
+        this.experienceService = experienceService;
         this.intializeRoutes();
     }
 

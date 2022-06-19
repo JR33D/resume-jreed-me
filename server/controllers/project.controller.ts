@@ -1,14 +1,17 @@
 import express, { Router, Request, Response } from "express";
 import { autoInjectable, inject } from "tsyringe";
 import IController from "./interfaces/controller.interface";
-import IProjectService from "../services/interfaces/projects.service.interface";
+import IProjectService from "../services/interfaces/project.service.interface";
+import ProjectService from "../services/project.service";
 
 @autoInjectable()
 export default class ProjectController implements IController {
     public path: string = '/projects';
     public router: Router = express.Router();
+    private projectService?: ProjectService;
 
-    constructor(@inject("IProjectService")private projectService?: IProjectService) {
+    constructor(@inject("IProjectService")projectService?: IProjectService) {
+        this.projectService = projectService;
         this.intializeRoutes();
     }
 

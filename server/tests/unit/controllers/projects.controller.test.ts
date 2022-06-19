@@ -5,7 +5,7 @@ import { mockReq, mockRes } from 'sinon-express-mock'
 import sinonChai from "sinon-chai";
 chai.use(sinonChai);
 
-import ProjectService from "../../../services/projects.service";
+import ProjectService from "../../../services/project.service";
 import ProjectController from "../../../controllers/project.controller";
 
 

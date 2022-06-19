@@ -40,9 +40,11 @@ COPY start.sh ./start.sh
 
 COPY /client/package.json ./client/package.json
 COPY /client/yarn.lock ./client/yarn.lock
+COPY /client/.yarnclean ./client/.yarnclean
 
 COPY /server/package.json ./server/package.json
 COPY /server/yarn.lock ./server/yarn.lock
+COPY /server/.yarnclean ./server/.yarnclean
 
 # install and copy client
 WORKDIR /app/client
