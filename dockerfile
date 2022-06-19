@@ -31,7 +31,7 @@ RUN yarn build
 FROM node:lts-alpine
 LABEL maintainer="Jeremy Reed <jreed129@gmail.com>"
 
-RUN yarn config set network-timeout 300000
+RUN yarn config set network-timeout 300000 --global
 RUN yarn global add concurrently serve
 
 WORKDIR /app
@@ -47,12 +47,18 @@ COPY /server/yarn.lock ./server/yarn.lock
 # install and copy client
 WORKDIR /app/client
 RUN yarn install --production
-COPY --from=builder /app/client/build ./client/
+COPY --from=builder /app/client/build ./
+RUN yarn autoclean --force
+RUN yarn cache clean
 
 # install and copy server
 WORKDIR /app/server
 RUN yarn install --production
-COPY --from=builder /app/server/build ./server/
+COPY --from=builder /app/server/build ./
+RUN yarn autoclean --force
+RUN yarn cache clean
+
+WORKDIR /app
 
 EXPOSE 3000
 EXPOSE 3001
