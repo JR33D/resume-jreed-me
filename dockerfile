@@ -28,7 +28,7 @@ RUN yarn build
 ######################################################
 ## Second stage to copy build artifacts and run app ##
 ######################################################
-FROM node:lts-latest
+FROM node:lts-alpine
 LABEL maintainer="Jeremy Reed <jreed129@gmail.com>"
 
 RUN yarn config set network-timeout 300000
