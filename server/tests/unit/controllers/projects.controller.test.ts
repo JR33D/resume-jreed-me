@@ -5,8 +5,9 @@ import { mockReq, mockRes } from 'sinon-express-mock'
 import sinonChai from "sinon-chai";
 chai.use(sinonChai);
 
-import ProjectController from '../../../controllers/Project.controller';
-import ProjectService from '../../../services/Projects.service';
+import ProjectService from "../../../services/projects.service";
+import ProjectController from "../../../controllers/project.controller";
+
 
 describe('Project Controller', () => {
     const Projects = [

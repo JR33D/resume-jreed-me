@@ -36,7 +36,7 @@
     "prestart": "npm run build",
     "start": "node -r dotenv/config build/server.js dotenv_config_path=../.env",
     "build": "tsc",
-    "test": "nyc mocha -r ts-node/register 'tests/**/*.test.ts'"
+    "test": "mocha -r ts-node/register 'tests/**/*.test.ts'"
   },
   "repository": {
     "type": "git",

@@ -5,8 +5,9 @@ import { mockReq, mockRes } from 'sinon-express-mock'
 import sinonChai from "sinon-chai";
 chai.use(sinonChai);
 
-import ExperienceController from '../../../controllers/Experience.controller';
-import ExperienceService from '../../../services/Experiences.service';
+import ExperienceService from "../../../services/experiences.service";
+import ExperienceController from "../../../controllers/experience.controller";
+
 
 describe('Experience Controller', () => {
     const Experiences = [

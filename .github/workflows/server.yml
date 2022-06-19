@@ -16,7 +16,7 @@ jobs:
         working-directory: server
     steps:
     - uses: actions/checkout@v3
-    - name: Building React Client
+    - name: Building Express Server
       uses: actions/setup-node@v3
       with:
         node-version: 'latest'

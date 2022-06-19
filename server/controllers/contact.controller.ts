@@ -1,5 +1,4 @@
 import express, { Router, Request, Response } from "express";
-import { autoInjectable } from "tsyringe";
 import sgMail from '@sendgrid/mail';
 import IController from "./interfaces/controller.interface";
 
