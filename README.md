@@ -1,0 +1,1 @@
+[![Build & Release App](https://github.com/JR33D/resume-jreed-me/actions/workflows/build-test-docker.yml/badge.svg)](https://github.com/JR33D/resume-jreed-me/actions/workflows/build-test-docker.yml)
