@@ -1,15 +1,14 @@
 import express, { Router, Request, Response } from "express";
-import Controller from "./interfaces/controller.interface";
+import { autoInjectable } from "tsyringe";
+import sgMail from '@sendgrid/mail';
+import IController from "./interfaces/controller.interface";
 
-const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
-
-export default class ContactController implements Controller {
+export default class ContactController implements IController {
   public path: string = '/contact';
   public router: Router = express.Router();
 
   constructor() {
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY || '');
     this.intializeRoutes();
   }
 
@@ -19,8 +18,8 @@ export default class ContactController implements Controller {
 
   postContact = (req: Request, res: Response) => {
     const msg = {
-      to: process.env.CONTACT_EMAIL, // Change to your recipient
-      from: process.env.APP_EMAIL,
+      to: process.env.CONTACT_EMAIL || '', // Change to your recipient
+      from: process.env.APP_EMAIL || '',
       replyTo: {
         name: req.body.fromName,
         email: req.body.fromEmail

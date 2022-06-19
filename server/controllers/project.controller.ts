@@ -1,12 +1,14 @@
 import express, { Router, Request, Response } from "express";
-import Controller from "./interfaces/controller.interface";
-import projectsJson from "../data/projects.json";
+import { autoInjectable, inject } from "tsyringe";
+import IController from "./interfaces/controller.interface";
+import IProjectService from "../services/interfaces/projects.service.interface";
 
-export default class ProjectController implements Controller {
+@autoInjectable()
+export default class ProjectController implements IController {
     public path: string = '/projects';
     public router: Router = express.Router();
 
-    constructor() {
+    constructor(@inject("IProjectService")private projectService?: IProjectService) {
         this.intializeRoutes();
     }
 
@@ -15,6 +17,7 @@ export default class ProjectController implements Controller {
     }
 
     getProjects = (req: Request, res: Response) => {
+        const projectsJson = this.projectService?.getAll();
         return res.json(projectsJson);
     };
 }

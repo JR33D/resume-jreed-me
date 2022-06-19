@@ -5,3 +5,5 @@ README.md
 
 **/.git
 **/.DS_Store
+
+build/**/*.map.js

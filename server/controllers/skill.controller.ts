@@ -1,12 +1,14 @@
 import express, { Router, Request, Response } from "express";
-import Controller from "./interfaces/controller.interface";
-import skillJson from "../data/skills.json";
+import { autoInjectable, inject } from "tsyringe";
+import IController from "./interfaces/controller.interface";
+import ISkillService from "../services/interfaces/skills.service.interface";
 
-export default class SkillController implements Controller {
+@autoInjectable()
+export default class SkillController implements IController {
     public path: string = '/skills';
     public router: Router = express.Router();
 
-    constructor() {
+    constructor(@inject("ISkillService") private skillService?: ISkillService) {
         this.intializeRoutes();
     }
 
@@ -14,7 +16,8 @@ export default class SkillController implements Controller {
         this.router.get(this.path, this.getSkills)
     }
 
-    getSkills = (req: Request, res: Response) => {
+    getSkills(req: Request, res: Response) {
+        const skillJson = this.skillService?.getAll();
         return res.json(skillJson);
     };
 }

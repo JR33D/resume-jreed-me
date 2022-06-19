@@ -1,12 +1,12 @@
 import express, { Application } from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import Controller from './controllers/interfaces/controller.interface';
+import IController from './controllers/interfaces/controller.interface';
 
 export default class App {
     public app: Application;
     public port: number;
-    constructor(controllers: Controller[], port: number) {
+    constructor(controllers: IController[], port: number) {
         this.app = express();
         this.port = port;
 
@@ -22,8 +22,8 @@ export default class App {
         this.app.use(bodyParser.json());
       }
      
-      private initializeControllers(controllers: Controller[]) {
-        controllers.forEach((controller: Controller) => {
+      private initializeControllers(controllers: IController[]) {
+        controllers.forEach((controller: IController) => {
           this.app.use('/api', controller.router);
         });
       }
