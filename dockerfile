@@ -4,6 +4,8 @@
 FROM node:lts-alpine as builder
 LABEL maintainer="Jeremy Reed <jreed129@gmail.com>"
 
+RUN yarn config set network-timeout 300000 --global
+
 # set the working direction
 WORKDIR /app
 
@@ -48,14 +50,14 @@ COPY /server/.yarnclean ./server/.yarnclean
 
 # install and copy client
 WORKDIR /app/client
-RUN yarn install --production
+RUN yarn install --frozen-lockfile --check-files --production
 COPY --from=builder /app/client/build ./
 RUN yarn autoclean --force
 RUN yarn cache clean
 
 # install and copy server
 WORKDIR /app/server
-RUN yarn install --production
+RUN yarn install --frozen-lockfile --check-files --production
 COPY --from=builder /app/server/build ./
 RUN yarn autoclean --force
 RUN yarn cache clean
