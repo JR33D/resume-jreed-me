@@ -1,14 +1,23 @@
 [
     {
-      "id": 1,
-      "title": "Software Engineer",
-      "company": "Pearson",
+      "id": 6,
+      "title": "Senior Software Engineer",
+      "company": "Pearson - PVS",
       "description":
-        "Championed migration and improvements of system from TFS to ADO, engineer workflow, and update application release cycles.",
-      "startDate": "02/2020"
+        "Improved business data retention for students who hvae graduated in previous years. Upgraded base framworks and versions of applications.",
+      "startDate": "04/2023"
     },
     {
-      "id": 2,
+      "id": 5,
+      "title": "Software Engineer",
+      "company": "Pearson - PVS",
+      "description":
+        "Championed migration and improvements of system from TFS to ADO, engineer workflow, and update application release cycles.",
+      "startDate": "02/2020",
+      "endDate": "04/2023"
+    },
+    {
+      "id": 4,
       "title": "Senior Front-End Engineer",
       "company": "FEi Systems",
       "description":
@@ -26,16 +35,16 @@
       "endDate": "11/2017"
     },
     {
-      "id": 4,
+      "id": 2,
       "title": "Software Engineer II",
-      "company": "Pearson (Connections Education)",
+      "company": "Pearson - PVS (Connections Education)",
       "description":
         "Maintained existing online schooling platform for hundreds of thousands of students.",
       "startDate": "01/2014",
       "endDate": "07/2017"
     },
     {
-      "id": 5,
+      "id": 1,
       "title": "Developer II",
       "company": "Catalyte (Catalyst IT Services)",
       "description":
