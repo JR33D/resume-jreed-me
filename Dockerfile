@@ -37,9 +37,6 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 # Standalone server (includes only the node_modules it actually needs)
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 
-# Blog MDX files are read at runtime by /api/posts
-COPY --from=builder --chown=nextjs:nodejs /app/src/content ./src/content
-
 USER nextjs
 
 EXPOSE 3000
