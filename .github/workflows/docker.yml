@@ -10,6 +10,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   build-and-push:
@@ -22,7 +23,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Needed to cross-compile linux/arm64 on the x86 GitHub runner
+      # GHCR requires fully lowercase image names; github.repository may have
+      # mixed-case org/user names which cause a silent push failure.
+      - name: Lowercase image name
+        run: echo "IMAGE_LC=${IMAGE_NAME,,}" >> $GITHUB_ENV
+        env:
+          IMAGE_NAME: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
         with:
@@ -37,17 +44,17 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}  # automatic, no setup needed
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       # Generates tags:
-      #   main branch  → ghcr.io/you/resume:latest + ghcr.io/you/resume:main
-      #   v1.2.3 tag   → ghcr.io/you/resume:v1.2.3
-      #   every push   → ghcr.io/you/resume:sha-<short-sha>
+      #   main branch → ghcr.io/jr33d/resume-jreed-me:latest + :main
+      #   v1.2.3 tag  → ghcr.io/jr33d/resume-jreed-me:v1.2.3
+      #   every push  → ghcr.io/jr33d/resume-jreed-me:sha-<short-sha>
       - name: Extract image metadata
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.IMAGE_LC }}
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
             type=ref,event=branch
@@ -62,6 +69,5 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          # GitHub Actions layer cache — keeps subsequent builds fast
           cache-from: type=gha
           cache-to: type=gha,mode=max
