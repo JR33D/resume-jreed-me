@@ -1,0 +1,43 @@
+---
+title: The Quiet Power of a Boring Stack
+date: "2024-10-08"
+tags: ["Opinion"]
+read: 5
+excerpt: Most of my best decisions have been boring. A defense of dull technology choices.
+---
+
+## The conference talk you will not see
+
+Nobody gives a talk called "We Used Postgres and It Was Fine." Nobody writes a blog post called "We Chose Node.js Because the Team Already Knew It."
+
+Boring decisions do not generate conference talks. They generate revenue.
+
+## What boring actually means
+
+Boring technology is not outdated technology. It is technology that has been in production long enough that its failure modes are well understood, its operational surface is documented, and its community has already solved most of the problems you will encounter.
+
+Postgres is boring. It has been boring for twenty years. It also handles JSON, full-text search, time-series data, geospatial queries, pub/sub, and logical replication. Teams reach for five separate services to do what Postgres already does.
+
+Redis is boring. Nginx is boring. Linux is boring. These are boring the way a Swiss watch is boring: extremely good at a specific thing, extremely reliable, extremely well-understood.
+
+## The hidden cost of exciting choices
+
+Every non-boring technology choice has a learning tax. Someone on your team has to become the expert. That person becomes a single point of failure. When they leave, you have an "exciting" technology and nobody who understands it.
+
+I have inherited two systems built on technologies the original team thought were exciting. Both of them were my first on-call introduction to the concept of "nobody knows why this works."
+
+## The hiring argument
+
+Boring stacks hire better. When you need to grow a team, you want to interview people against a known surface. "Can you write a SQL query?" is a question with a clear answer. "Can you reason about our proprietary event sourcing framework?" is a question that will filter out every good engineer who values their time.
+
+## When to be exciting
+
+There is a place for new technology. It is:
+
+- A contained prototype where you are explicitly learning
+- A use case that boring technology genuinely cannot handle
+- A place where the cost of getting it wrong is low
+
+Everywhere else, be boring. Be so boring that operations is uneventful. Be so boring that your oncall is quiet. Be so boring that your engineers can think about the actual product instead of the infrastructure.
+
+Boring is a competitive advantage.

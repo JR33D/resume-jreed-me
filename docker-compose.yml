@@ -1,0 +1,16 @@
+services:
+  resume:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      # Raspberry Pi 4/5 is ARM64 — set platform when building on an x86 machine.
+      # Comment this out if you're building directly on the Pi.
+      platforms:
+        - linux/arm64
+    image: jreed-resume:latest
+    container_name: jreed-resume
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production

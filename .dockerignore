@@ -1,0 +1,16 @@
+.git
+.gitignore
+.github
+.gitea
+.claude
+.next
+node_modules
+npm-debug.log*
+*.zip
+index.html
+resume.html
+README.md
+Dockerfile
+docker-compose.yml
+.env.example
+.env*.local

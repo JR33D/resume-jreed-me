@@ -1,0 +1,47 @@
+---
+title: Reading Architecture Diagrams Like a Hawk
+date: "2025-01-21"
+tags: ["Architecture", "Career"]
+read: 7
+excerpt: Three diagnostic questions I ask of every architecture diagram I am shown.
+---
+
+## The diagram is never the system
+
+Every architecture diagram I have ever been shown is a lie. Not a malicious lie — an optimistic one. The diagram shows the happy path, the intended flow, the system as the architect hoped it would be.
+
+The system as it actually runs is different. It has the retry logic that was added after the first outage. It has the undocumented cron job that nobody owns. It has the database that got added in a hotfix and never removed.
+
+Learning to read diagrams means learning to ask what is missing.
+
+## Question one: where does time live?
+
+Every distributed system has a concept of time. The question is: whose clock are you trusting?
+
+Look at the diagram and ask: if two services receive an event at the same time, how does the system decide which one wins? If there is no answer on the diagram, there is no answer in the system — which means the answer is "whoever wrote last."
+
+That is usually fine until it is not.
+
+## Question two: what happens when this arrow fails?
+
+Pick an arrow — any arrow — between two boxes on the diagram. Ask: what does the left box do when the right box does not respond?
+
+Retries? Dead-letter queue? It silently succeeds and logs a warning? It crashes?
+
+Most diagrams show arrows as lossless, bidirectional, instantaneous. Real networks are none of those things. If the diagram does not show error paths, the error paths have not been designed — they have been discovered, usually at 2am.
+
+## Question three: who owns the data at rest?
+
+Data has a home. Look at every database, queue, and cache on the diagram. Ask: who is allowed to write here? Who is allowed to read? What happens if this data is wrong?
+
+In my experience, the most dangerous lines in any system are the ones that cross a data-ownership boundary invisibly. Service A reads from Service B's database directly. A cron job writes into a table that is supposed to be owned by a single service.
+
+These show up on diagrams as a simple arrow. They show up in incidents as cascading failures.
+
+## The question behind the questions
+
+All three questions are really asking the same thing: *what are the assumptions this system makes, and what happens when those assumptions break?*
+
+Good architecture is not about drawing the right boxes. It is about being explicit about the assumptions and making sure every assumption has a named owner who will be paged when it fails.
+
+Ask for that diagram. You will learn more from it than from the happy-path version.

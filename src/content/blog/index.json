@@ -1,0 +1,42 @@
+[
+  {
+    "slug": "on-being-the-second-engineer",
+    "title": "On Being the Second Engineer",
+    "date": "2025-08-14",
+    "tags": ["Career"],
+    "read": 6,
+    "excerpt": "The second engineer on a team shapes the culture more than the first. Here is what I have learned over four hirings."
+  },
+  {
+    "slug": "event-driven-without-the-event-framework",
+    "title": "Event-Driven, Without the Event Framework",
+    "date": "2025-05-02",
+    "tags": ["Architecture"],
+    "read": 9,
+    "excerpt": "You do not need Kafka to start. Start with Postgres LISTEN/NOTIFY and earn your complexity."
+  },
+  {
+    "slug": "reading-architecture-diagrams",
+    "title": "Reading Architecture Diagrams Like a Hawk",
+    "date": "2025-01-21",
+    "tags": ["Architecture", "Career"],
+    "read": 7,
+    "excerpt": "Three diagnostic questions I ask of every architecture diagram I am shown."
+  },
+  {
+    "slug": "the-quiet-power-of-a-boring-stack",
+    "title": "The Quiet Power of a Boring Stack",
+    "date": "2024-10-08",
+    "tags": ["Opinion"],
+    "read": 5,
+    "excerpt": "Most of my best decisions have been boring. A defense of dull technology choices."
+  },
+  {
+    "slug": "mentorship-is-a-design-problem",
+    "title": "Mentorship Is a Design Problem",
+    "date": "2024-06-30",
+    "tags": ["Career"],
+    "read": 8,
+    "excerpt": "The best mentors I have had designed their mentorship intentionally. Six patterns that show up again and again."
+  }
+]
