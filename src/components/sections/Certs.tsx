@@ -1,6 +1,6 @@
 'use client';
 
-import { useColors } from '@/lib/theme';
+import { useColors, useIsMobile } from '@/lib/theme';
 import { data, type Certification } from '@/lib/data';
 
 function CertBadge({ cert, accent, mute, line }: { cert: Certification; accent: string; mute: string; line: string }) {
@@ -35,6 +35,7 @@ function CertBadge({ cert, accent, mute, line }: { cert: Certification; accent: 
 
 export default function Certs() {
   const { accent, mute, ink, line } = useColors();
+  const isMobile = useIsMobile();
   const D = data;
 
   const hasVolunteer = D.volunteer.length > 0;
@@ -45,7 +46,7 @@ export default function Certs() {
         <span style={{ color: accent }}>#</span> certifications{hasVolunteer ? ' + volunteer' : ''}
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: hasVolunteer ? '1fr 1fr' : '1fr', gap: 24, maxWidth: hasVolunteer ? undefined : 640 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: hasVolunteer && !isMobile ? '1fr 1fr' : '1fr', gap: 24, maxWidth: hasVolunteer ? undefined : 640 }}>
         {/* Certifications */}
         <div>
           <div style={{ fontSize: 11, color: accent, letterSpacing: 0.8, marginBottom: 8 }}>## CERTIFICATIONS</div>

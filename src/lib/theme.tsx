@@ -68,6 +68,17 @@ export function useTheme(): ThemeCtx {
   return ctx;
 }
 
+export function useIsMobile(breakpoint = 768): boolean {
+  const [mobile, setMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setMobile(window.innerWidth < breakpoint);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, [breakpoint]);
+  return mobile;
+}
+
 export function useColors() {
   const { dark, accent, density } = useTheme();
   const bg      = dark ? '#0e0e10' : '#f7f6f3';
